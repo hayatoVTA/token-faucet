@@ -1,18 +1,4 @@
 //SPDX-License-Identifier: MIT
-// pragma solidity ^0.8.0;
-
-// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
-// contract TestToken is ERC20 {
-//     constructor(string memory name, string memory symbol) ERC20(name, symbol) {
-//         _mint(msg.sender, 10000 * (10**18));
-//     }
-
-//     function faucet(address recipient, uint256 amount) external {
-//         _mint(recipient, amount);
-//     }
-// }
-
 pragma solidity ^0.8.0;
 
 import "./ERC20.sol";
@@ -24,16 +10,16 @@ contract FaucetToken is ERC20 {
 
     uint256 public faucetMax;
     uint256 public faucetFee;
-    // address payable public boss;
     address public owner;
     mapping(address => uint256) timeouts;
 
     constructor() {
         owner = msg.sender;
         faucetFee = 0 ether;
-        faucetMax = 1000 * 10**18; // Initial max of 1,000 FAT per mint request
+        faucetMax = 1000 * 10**18;
     }
 
+    // Main Faucet Func
     function getMeSome(uint256 _requestValue) public payable timeCheck {
         require(msg.value == faucetFee, "no_fee");
         require(_requestValue <= faucetMax, "too_much");
@@ -62,11 +48,11 @@ contract FaucetToken is ERC20 {
     }
 
     fallback() external {
-        require(msg.data.length == 0, "invalid");
+        require(msg.data.length == 0, "Invalid detail");
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "not_owner");
+        require(msg.sender == owner, "You are not owner!!");
         _;
     }
 
