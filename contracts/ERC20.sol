@@ -17,6 +17,7 @@ import "./SafeMath.sol";
  * compliant implementations may not do it.
  */
 contract ERC20 is IERC20 {
+    // Require defined for four arithmetic operations
     using SafeMath for uint256;
 
     mapping(address => uint256) private _balances;

@@ -7,3 +7,10 @@ interface Window {
 // interface Window {
 //   ethereum: Ethereumish;
 // }
+
+
+// declare global {
+//     interface Window {
+//         ethereum: Ethereumish;
+//     }
+// }

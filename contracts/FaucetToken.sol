@@ -20,7 +20,7 @@ contract FaucetToken is ERC20 {
     }
 
     // Main Faucet Func
-    function getMeSome(uint256 _requestValue) public payable timeCheck {
+    function getMeSome(uint256 _requestValue) public payable {
         require(msg.value == faucetFee, "no_fee");
         require(_requestValue <= faucetMax, "too_much");
 
