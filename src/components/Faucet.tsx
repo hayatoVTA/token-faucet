@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { faucetSchema } from '../types/faucetShema';
+import { OutlinedInput } from '@mui/material';
+import styled from '@emotion/styled';
 
 
 const tokenAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"
@@ -16,6 +18,10 @@ const tokenAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3"
 //         ethereum: Ethereumish;
 //     }
 // }
+
+const FormGroup = styled.form`
+  display: flex;
+`;
 
 const Faucet = ({tokenContract}:any) => {
 
@@ -69,19 +75,22 @@ const Faucet = ({tokenContract}:any) => {
           Get Faucet Token
         </Button> */}
       {/* </form> */}
-      <form onSubmit={handleSubmit(onClickFaucet)}>
+      <FormGroup onSubmit={handleSubmit(onClickFaucet)}>
 
-        <input {...register("amount")} />
+        <OutlinedInput
+          {...register("amount")}
+          placeholder="Amount"
+          size="small"
+        />
         <p>{errors.amount?.message}</p>
-        {/* <input type="text" /> */}
 
         <Button
           type="submit"
           variant="contained"
         >
-          Get Faucet Token
+          Get Token
         </Button>
-      </form>
+      </FormGroup>
       <Button
         onClick={getBalance}
         variant="contained"
