@@ -13,12 +13,12 @@ async function main() {
     deployer.address
   );
 
-  const FCTToken = await ethers.getContractFactory("TestToken");
-  const fctToken = await FCTToken.deploy("TestToken", "TTKN");
+  const FaucetToken = await ethers.getContractFactory("FaucetToken");
+  const testToken = await FaucetToken.deploy();
 
-  await fctToken.deployed();
+  await testToken.deployed();
 
-  console.log("Token deployed to:", fctToken.address);
+  console.log("Token deployed to:", testToken.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
